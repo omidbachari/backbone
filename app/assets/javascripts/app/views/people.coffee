@@ -1,16 +1,16 @@
 PersonView = Backbone.View.extend {
   className: 'card'
   template: _.template "<img class='image' src='<%= imagePath %>'></img>" +
-    "<span class='name'><%= name %></span>" +
-    "<span class='title'><%= title %></span>" +
-    "<span class='bio'><%= bio %></span>"
-
+    "<a class='name virtual' id='<%= _url.split('/')[2].split('.')[0] %>' href='#'>" +
+      "<%= name %>" +
+    "</a>" +
+    "<span class='title'><%= title %></span>"
   render: ->
     @$el.html @template(@model.toJSON())
     this
 }
 
-peopleList = new PeopleList
+window.peopleList = new PeopleList
 
 PeopleListView = Backbone.View.extend {
   collection: peopleList
@@ -26,3 +26,6 @@ peopleListView = new PeopleListView
 
 peopleList.fetch().then ->
   $('.backbone').html peopleListView.render().el
+  $('a.virtual').click (e) ->
+    e.preventDefault()
+    router.navigate(e.currentTarget.id, {trigger: true});
