@@ -1,0 +1,19 @@
+.image {
+  width: 10em;
+}
+
+.name {
+  color: red;
+  display: block;
+  font-size: 2em;
+}
+
+.title {
+  display: block;
+}
+
+.card {
+  border: 2px solid;
+  display: block;
+  width: 20em;
+}
